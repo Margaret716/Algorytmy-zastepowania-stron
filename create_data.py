@@ -1,6 +1,6 @@
 import random
 
-class Dane:
+class Data:
 
     def __init__(self):
         """Initialization of class data"""
