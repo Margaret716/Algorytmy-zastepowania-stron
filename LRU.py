@@ -1,22 +1,21 @@
 
 def LRU_algorithm(reference_string):
 
-    queue = [0, 0, 0]   #w tej liście będą przechowywane kolejne liczby, które wyznaczy w odpowiedniej kolejności LRU
-    LRU_hits = 0        #ustalam wartość początkową dla wartości hit
+    queue = [0, 0, 0]   #in this list, subsequent numbers determined by the LRU algorithm will be stored in the appropriate order
+    LRU_hits = 0        
 
-    queue[0] = reference_string[0]       #ustalam stan początkowy
-    counter = [1, 0, 0]                  #lista counter będzie przechowywała ile razy powtarza się dana liczba z listy queue
+    queue[0] = reference_string[0]       #setting startup state 
+    counter = [1, 0, 0]                  #The "counter" list will store how many times each number from the "queue" list repeats
 
-
-    for i in range(1, len(reference_string)):   #loopuje przez listę podaną w argumencie funkcji
+    for i in range(1, len(reference_string)):   #loop the list
 
         if reference_string[i] in queue:
-            LRU_hits += 1                                    #jeśli napotkana wartość znajduje się już w liście dodajemy 1 do warości hit
-            counter[queue.index(reference_string[i])] = 1    # i ustawiamy wartość countera dla tej komórki jako 1
+            LRU_hits += 1                                    #If the encountered value is already in the list, we add 1 to the "hit" value
+            counter[queue.index(reference_string[i])] = 1    # we also set the value of the counter for that cell as 1
 
         else:
 
-            if i == 1:                                       #tutaj potrzeba było zawrzeć stan dla początkowych uruchomień
+            if i == 1:                                       #solving problem of firsts runs
                 queue[1] = reference_string[i]
                 counter[1] = 1
                 counter[0] = 2
@@ -31,15 +30,15 @@ def LRU_algorithm(reference_string):
 
 
             else:
-                queue[counter.index((max(counter)))] = reference_string[i]   # to znajduje najstarszą, w tabeli queue zmieniamy wartość po tym indeksie
-                counter[counter.index(max(counter))] = 0                     # ustawiam jej wiek o tym indeksie  na 0 w liście counter,
-                                                                             # musi być w takiej kolejności, inaczej najstarsza będze drugą najstarszą
+                queue[counter.index((max(counter)))] = reference_string[i]   # finds the oldest one, in the "queue" table we change the value at that index
+                counter[counter.index(max(counter))] = 0                     # setting its age on 0 in counter list
+                                                                             # it'is important to do it in this order
 
-          # kończy się kolejka, więc zwiększamy wszystkie wartości zawarte w counterze o 1
+          # queue is ending, so we increase all numbers in counter list by one
             counter[0] += 1
             counter[1] += 1
             counter[2] += 1
 
-    missing_LRU = len(reference_string) - LRU_hits      #obliczamy liczbę missingów i zapisujemy wynik do pliku
+    missing_LRU = len(reference_string) - LRU_hits      #calculare number of missings and saving it to the file 
     with open("results/LRU_results.csv", "a") as w:
         w.write(f"{missing_LRU} ")
