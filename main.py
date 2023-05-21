@@ -3,8 +3,8 @@ import FIFO
 import create_data
 import plot
 
-a = create_data.Dane()  #creating data
-a.stworz_losowe_dane()
+a = create_data.Data()  #creating data
+a.create_random_data()
 
 for i in range(1, 51):
 
