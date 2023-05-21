@@ -6,9 +6,12 @@ def combine_results():
     FIFO_results_list = []
     LRU_results_list = []
 
-    """ Zczytujemy wyniki z plików i wpisujemy je do odpowiednich list,
-        tak aby później stworzyć plik złożony z dwóch kolumn. To z tego pliku
-        odczytywane będą dane do wykresu. """
+    """ 
+        We read the results from files and enter them into the respective lists, 
+        in order to later create a file composed of two columns. 
+        The data for the chart will be read from this file.
+        
+    """
 
     with open('results/FIFO_results.csv', 'r') as f:
         data = f.readlines()
@@ -40,10 +43,10 @@ def combine_results():
 
 def create_plot():
 
-    """     Tworzymy wykres na podstawie pliku results.csv
+    """     Creating a chart from data in results.csv
 
-                            STRUKTURA W PLIKU
-            Liczba missingów dla FIFO   |   Licza missingów dla LRU
+                            STRUCTURE IN THE FILE
+            Number of missings for FIFO   |   Number of missings for LRU
 
     """
 
@@ -55,8 +58,8 @@ def create_plot():
 
     plt.plot(df_stat["FIFO"], label='FIFO')
     plt.plot(df_stat["LRU"], label='LRU')
-    plt.title("Porównanie FIFO i LRU")
-    plt.ylabel("Brakujące strony")
+    plt.title("Comparison of FIFO and LRU")
+    plt.ylabel("Missing pages")
     plt.xlabel("Próby [l.p.]")
     plt.legend()
 
