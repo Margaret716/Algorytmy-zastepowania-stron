@@ -3,7 +3,7 @@ import FIFO
 import create_data
 import plot
 
-a = create_data.Dane()  #tworzymy dane
+a = create_data.Dane()  #creating data
 a.stworz_losowe_dane()
 
 for i in range(1, 51):
@@ -12,14 +12,14 @@ for i in range(1, 51):
         data = file.readlines()
 
     reference_string = []
-    for line in data:           #odczytujemy dane z pliku i wpisujemy je do listy
-        numbers = line.split()           # split() zmienia dane z pliku w listę
+    for line in data:           #reading data from files and writing them to the list
+        numbers = line.split()           # split() change data from file to list
         for number in numbers:
             reference_string.append(number)
 
-    LRU.LRU_algorithm(reference_string)        #uruchamiamy algorytm LRU
-    FIFO.FIFO_algorithm(reference_string)      #uruchamiamy algorytm FIFO
+    LRU.LRU_algorithm(reference_string)        #run LRU algorithm
+    FIFO.FIFO_algorithm(reference_string)      #run FIFO algorithm
 
 
-plot.combine_results()          #tworzymy gotowy plik z danymi pod wykres
-plot.create_plot()              #tworzymy wykres
+plot.combine_results()          #creating file with data ready to convert them to a plot
+plot.create_plot()              #creating the plot
