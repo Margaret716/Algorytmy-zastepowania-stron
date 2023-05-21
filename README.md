@@ -1,4 +1,4 @@
-# Algorytmy-zastepowania-stron
+# Page-replacement-algorithms
 
 <br />
 
